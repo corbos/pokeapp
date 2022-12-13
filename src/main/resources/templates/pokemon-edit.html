@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{shared :: head (${'Edit ' + pokemon.name})}">
+    <title>Add Pokemon</title>
+</head>
+<body>
+    <div class="container">
+        <div th:replace="~{shared :: navbar ('pokemon')}"></div>
+        <h1 th:text="${'Edit ' + pokemon.name}">Edit Pokemon</h1>
+        <form method="POST" th:object="${pokemon}">
+            <div class="form-group">
+                <label>Dex #</label>
+                <span th:text="*{dexNumber}" class="form-control">100</span>
+                <input type="hidden" th:field="*{dexNumber}">
+            </div>
+            <div class="form-group">
+                <label for="nameId">Name</label>
+                <input class="form-control" id="nameId" type="text" name="name" th:value="*{name}">
+                <div th:if="${#fields.hasErrors('name')}">
+                        <p th:each="error : ${#fields.errors('name')}" class="alert alert-danger" th:text="${error}">
+                            Bad name </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="">Poke Type</label>
+                    <select class="form-control" th:field="*{pokeType.pokeTypeId}">
+                        <option th:each="pt : ${poketypes}" 
+                                th:value="${pt.pokeTypeId}"
+                                th:text="${pt.name}">Value</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <a href="/" class="btn btn-default">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

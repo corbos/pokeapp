@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{shared :: head ('Delete ' + ${pokemon.name})}">
+    <title>Pokemon</title>
+</head>
+<body>
+    <div class="container">
+        <div th:replace="~{shared :: navbar ('pokemon')}"></div>
+        <form method="POST">
+            <h1>Confirm delete</h1>
+            <p>
+                Are you sure you want to delete
+                <span th:text="${pokemon.name}">Pokemon Name</span>?
+            </p>
+            <p>Deletions are permanent and cannot be undone.</p>
+            <div>
+                <button type="submit" class="btn btn-danger">Delete</button>
+                <a href="/" class="btn btn-light">Cancel</a>
+            </div>
+        </form>
+    </div>
+</body>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+    <head th:replace="~{shared :: head ('Poke Home')}">
+        <title>Poke Home</title>
+    </head>
+    <body>
+        <div class="container">
+            <div th:replace="~{shared :: navbar ('pokemon')}"></div>
+            <div class="row">
+                <div class="col">
+                    <h1>Poke Home</h1>
+                </div>
+                <div class="col right">
+                    <a href="/pokemon/add" class="btn btn-primary">Add Pokemon</a>
+                </div>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Dex #</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="poke : ${pokemon}">
+                        <td th:text="${poke.dexNumber}"></td>
+                        <td th:text="${poke.name}"></td>
+                        <td th:text="${poke.pokeType.name}"></td>
+                        <td>
+                            <a th:href="@{/pokemon/delete/{id}(id=${poke.dexNumber})}" href="/" class="btn btn-danger">Delete</a>
+                            <a th:href="@{/pokemon/edit/{id}(id=${poke.dexNumber})}" href="/" class="btn btn-light">Edit</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

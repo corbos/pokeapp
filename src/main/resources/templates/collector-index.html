@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head th:replace="~{shared :: head ('Collectors')}">
+        <title>Poke Types</title>
+    </head>
+    <body>
+        <div class="container">
+            <div th:replace="~{shared :: navbar ('collectors')}"></div>
+            <div class="row">
+                <h1 class="col">Collectors</h1>
+                <div class="col right">
+                    <a href="/collector/add" class="btn btn-primary">Add A Collector</a>
+                </div>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>First</th>
+                        <th>Last</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="c : ${collectors}">
+                        <td th:text="${c.firstName}">First</td>
+                        <td th:text="${c.lastName}">First</td>
+                        <td>
+                            <a th:href="@{/collector/delete/{id}(id=${c.collectorId})}" href="/" class="btn btn-danger">Delete</a>
+                            <a th:href="@{/collector/edit/{id}(id=${c.collectorId})}" href="/" class="btn btn-light">Edit</a>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+    </body>

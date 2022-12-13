@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head th:replace="~{shared :: head ('Poke Types')}">
+        <title>Poke Types</title>
+    </head>
+    <body>
+        <div class="container">
+            <div th:replace="~{shared :: navbar ('poketype')}"></div>
+            <h1>Poke Types</h1>
+            <form method="POST">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="poketype : ${poketypes}">
+                            <td th:text="${poketype.name}">Normal</td>
+                            <td>
+                                <a th:href="@{/poketype/delete/{id}(id=${poketype.pokeTypeId})}" href="/" class="btn btn-danger">Delete</a>
+                                <a th:href="@{/poketype/edit/{id}(id=${poketype.pokeTypeId})}" href="/" class="btn btn-light">Edit</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td th:classappend="${#fields.hasErrors('poketype.name')}? 'validation-err'">
+                                <input type="text" th:field="${poketype.name}" class="form-control" placeholder="Poke Type Name">
+                                <div class="validation-message" th:if="${#fields.hasErrors('poketype.name')}" 
+                                     th:each="error : ${#fields.errors('poketype.name')}" 
+                                     th:text="${error}">
+                                    Error Message
+                                </div>
+                            </td>
+                            <td>
+                                <button type="submit" class="btn btn-primary">Add</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </body>

@@ -1,0 +1,26 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.validation-err > input{
+    border-color: #dc3545;
+}
+
+.validation-err > .validation-message{
+    color: #dc3545;
+}
+
+.navbar{
+    padding-left:0px;
+}

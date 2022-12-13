@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{shared :: head ('Delete ' + ${collector.firstName + ' ' + collector.lastName})}">
+    <title>Collectors</title>
+</head>
+<body>
+    <div class="container">
+        <div th:replace="~{shared :: navbar ('collectors')}"></div>
+        <form method="POST">
+            <h1>Confirm delete</h1>
+            <p>
+                Are you sure you want to delete
+                <span th:text="${collector.firstName + ' '+ collector.lastName}">Collector</span>?
+            </p>
+            <p>Deletions are permanent and cannot be undone.</p>
+            <div>
+                <button type="submit" class="btn btn-danger">Delete</button>
+                <a href="/collector" class="btn btn-light">Cancel</a>
+            </div>
+        </form>
+    </div>
+</body>
